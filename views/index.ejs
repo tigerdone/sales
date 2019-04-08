@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            Interactive Media Studio
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="css/base.css" title="a">
+        <link rel="stylesheet" href="css/iconfont.css" title="a">
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon" title="a">
+        <link id="d" rel="stylesheet" media="screen and (max-width:828px) and (min-width:650px)" href="css/mobile.css" type="text/css">
+        <link id="c" rel="stylesheet" media="screen and (max-width:650px)" href="css/mobile2.css" type="text/css">
+        <link id="b" rel="stylesheet" media="screen and (min-width:829px)" href="css/index.css" type="text/css">
+        <link id="a" rel="alternate" media="screen and (min-width:800px)" href="css/index_mac.css" type="text/css">
+        <link rel="stylesheet" href="css/both2.css" type="text/css">
+        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+        <script>
+            console.log(screen.width+"*"+screen.height);
+            if(goPAGE() == "mobile"){
+                var viewport = document.querySelector("meta[name=viewport]");
+                var viewport_scale = 1/window.devicePixelRatio
+                if(viewport_scale < 0.5){
+                    viewport_scale = 0.5;
+                }
+                viewport.setAttribute("content", "width=device-width, " +
+                    "initial-scale=" + viewport_scale + ", maximum-scale=1.0, user-scalable=no")
+            }
+            function goPAGE(){
+                if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+                    return "mobile"
+                }
+                else {
+                    return "pc"
+                }
+            }
+            if(goPAGE() == "pc"&&window.devicePixelRatio >= 1.5){
+                document.getElementById("a").setAttribute("rel","stylesheet");
+                document.getElementById("b").setAttribute("rel","alternate");
+//                document.getElementById("c").setAttribute("rel","alternate");
+//                document.getElementById("d").setAttribute("rel","alternate");
+            }
+        </script>
+    </head>
+    <body id="all">
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+        <div id="the_header" class="stair1">
+                <div class="headerBg">
+                    <a href="#" id="logo" class="stair1_left logo_top">
+                        <img class="my_fadein" src="img/ims.png" alt="logo">
+                    </a>
+                    <nav id="header_nav"  class="header_items my_fadein header_items_pien">
+                        <a id="div1Link" class="choose" href="javascript:">
+                            Home
+                        </a>
+                        <a id="div2Link" href="javascript:">
+                            Programs
+                        </a>
+                        <a id="div3Link" href="javascript:">
+                            Publications
+                        </a>
+                        <a id="div4Link" href="javascript:">
+                            Events
+                        </a>
+                        <a id="div5Link" href="javascript:">
+                            About
+                        </a>
+                    </nav>
+                    <script type="text/javascript">
+                        window.onscroll = function() {
+                            var scrollY = window.scrollY;
+                            if(scrollY <= 0){
+                                $("#logo").addClass("logo_top");
+                                $("#header_nav").addClass("header_items_pien");
+                                $("#the_header").removeClass("stair1_pine");
+                            }
+                            else {
+                                $("#logo").removeClass("logo_top");
+                                $("#header_nav").removeClass("header_items_pien");
+                                $("#the_header").addClass("stair1_pine");
+                            }
+                        }
+                    </script>
+                </div>
+        </div>
+        <div id="div1" class="main_box">
+            <div class="main_header">
+                <div id="wrapper" class="stair2 my_fadein">
+                    <h1>
+                        Interactive Media Studio
+                        <!--<div class="border"></div>-->
+                    </h1>
+                    <h2>
+                        Young is to be restless!
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="main_body">
+            <div class="body1">
+                <div class="body1_stair1 title">
+                    <p class="prepare_fadein">
+                        Meet our team
+                    </p>
+                </div>
+                <div class="body1_stair2 prepare_fadein">
+                    <div  class="font_weith">
+                        <p>
+                            The Interactive Media Studio  in Chengdu University of Information Technology is an interdisciplinary 
+                            research lab that aims to create future media technologies and friendly interfaces.
+                        </p>
+                    </div>
+
+                    <div  class="font_weith">
+                        <p>
+                            Not only lie in the augmented reality,
+                            gestural interfaces, wearable computing, intelligence hardware and other technologies, but also focus on how to combine them with unique and meaningful themes to create unique experience of human-computer interactions.
+                        </p>
+                    </div>
+                </div>
+                <div class="body1_stair3">
+                    <div class="body1_stair3_container">
+                        <div class="body1_stair3_box prepare_fadein">
+                            <div class="stair1_title title title_color">
+                                <a class="Research_interests" href="javascript:">
+                                    Research interests
+                                </a>
+                            </div>
+                            <div class="research_stair research_items box">
+                                <div class="research_item">
+                                    <img src="img/in01.png" alt="User Interface">
+                                    <p>
+                                        UX Design
+                                    </p>
+                                </div>
+                                <div class="research_item">
+                                    <img src="img/in02.png" alt="User Interface">
+                                    <p>
+                                        Light&Shadow
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="research_stair research_items box">
+                                <div class="research_item">
+                                    <img src="img/in03.png" alt="User Interface">
+                                    <p>
+                                        Intelligence Hardware
+                                    </p>
+                                </div>
+                                <div class="research_item">
+                                    <img src="img/in04.png" alt="User Interface">
+                                    <p>
+                                        HCI
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="img_box">
+                            <!--<img class="prepare_fadein" src="img/members.jpg" alt="">-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="div2" class="body2">
+                <h1 class="body1_stair1 title">
+                    <p class="prepare_fadein">
+                        Programs
+                    </p>
+                </h1>
+                <div id="clone" class="body2_container clearfix">
+                    <a class=""  href="program/program1.html">
+                        <div class="program_mobile program_mobile2 prepare_fadein">
+                            <img src="img/program/MagicPAPERs.jpg" alt="magicpaper">
+                            <div class="program_card_title">
+                                <p>
+                                    MagicPAPER
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class=""  href="program/program2.html">
+                        <div class="program_mobile program_mobile2 prepare_fadein">
+                            <img src="img/program/Object_Recognitions.jpg" alt="magicpaper">
+                            <div class="program_card_title">
+                                <p>
+                                    Object Recognition
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class=""  href="program/program3.html">
+                        <div class="program_mobile program_mobile2 prepare_fadein">
+                            <img src="img/program/Anmojis.jpg" alt="magicpaper">
+                            <div class="program_card_title">
+                                <p>
+                                    Anmoji
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class=""  href="program/program4.html">
+                        <div class="program_mobile program_mobile2 prepare_fadein">
+                            <img src="img/program/See_your_voices.jpg" alt="magicpaper">
+                            <div class="program_card_title">
+                                <p>
+                                    See your voice
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class=""  href="program/program5.html">
+                        <div class="program_mobile program_mobile2 prepare_fadein">
+                            <img src="img/program/Table_wars.jpg" alt="magicpaper">
+                            <div class="program_card_title">
+                                <p>
+                                    Table war
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class=""  href="program/program6.html">
+                        <div class="program_mobile program_mobile2 prepare_fadein">
+                            <img src="img/program/The_Legend_of_‘Shi-Bi's.jpg" alt="magicpaper">
+                            <div class="program_card_title">
+                                <p>
+                                    The Legend of ‘Shi-Bi’
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class=""  href="program/program7.html">
+                        <div class="program_mobile program_mobile2 prepare_fadein">
+                            <img src="img/program/ZigBees.jpg" alt="magicpaper">
+                            <div class="program_card_title">
+                                <p>
+                                    Intelligent Smoke Alarm System with Wireless Sensor
+                                    Network using ZigBee
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a id="cloneed" class=""  href="program/program8.html">
+                        <div class="program_mobile program_mobile2 prepare_fadein">
+                            <img src="img/program/Tone_of_Qiangs.jpg" alt="magicpaper">
+                            <div class="program_card_title">
+                                <p>
+                                    Tone of Qiang
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <script>
+                        var added = false;
+                        add()
+                        $(window).resize(function () {
+                            add()
+                        })
+                        function add() {
+                            if(!added &&$(window).width() > 1743){
+                                console.log("okok")
+                                $("#clone").append($("#cloneed").clone().addClass("clone").attr("href","javascript:"))
+                                added = true;
+                            }
+                            if(added &&$(window).width() < 1743){
+                                $(".clone").remove();
+                                added = false;
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="body2_container2 clearfix">
+
+                </div>
+                <div class="body2_stair2 button display">
+                    <a id="program_more" class="prepare_fadein display" href="javascript:">
+                        Learn more
+                    </a>
+                    <script>
+                        $(document).ready(function(){
+                            var view_num = 2;
+//                            console.log("view_num"+view_num);
+                            $("#program_more").on("click", function () {
+                                view_num += 1;
+//                                console.log("okoko");
+                                $(".body2_container").eq(view_num).removeClass("display")
+                                    .addClass("prepare_fadein").animate({opacity:1,filter:'Alpha(opacity=90)'},500);
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <div id="div3" class="body3">
+                <h1 class="body1_stair1 title">
+                    <p class="prepare_fadein">
+                        Publications
+                    </p>
+                </h1>
+
+                <div class="body3_item prepare_fadein">
+                    <div class="body3_get publication_choose">
+                        <a class="publication_button" href="javascript:">
+                            Papers
+                        </a>
+                    </div>
+                    <div class="body3_get">
+                        <a class="publication_button" href="javascript:">
+                            Patent
+                        </a>
+                    </div>
+                    <div class="body3_get">
+                        <a class="publication_button" href="javascript:">
+                            Software copyright
+                        </a>
+                    </div>
+                    <div class="body3_get">
+                        <a class="publication_button" href="javascript:">
+                            Awards
+                        </a>
+                    </div>
+                </div>
+                <ul>
+                    <div id="Publications0">
+                        <!--var dataPaper = []-->
+                        <!--var dataPatent = []-->
+                        <!--var dataSoftware = []-->
+                        <!--var dataAwards = []-->
+                        <% for(var i = 0 ; i<dataPaper.length ;i++) { %>
+                            <% var aaa = "prominent" %>
+                            <% if(i%2 === 0){ %>
+                                <% aaa = "prominent" %>
+                            <% }else{ %>
+                                <% aaa = "" %>
+                            <%}%>
+                            <div class="body3_list prepare_fadein <%- aaa %>" >
+                                <div class="list_container ">
+                                    <p>
+                                        <%= dataPaper[i].item %>
+                                    </p>
+                                    <div class="pub_more">
+                                        <a href=<%= dataPaper[i].paper %>>
+                                            <!--<i class="iconfont icon-HCI"></i>-->
+                                            <img class="paper_img" src="img/icon_paper.png" alt="icon_paper">
+                                            <span>
+                                                Paper
+                                            </span>
+                                        </a>
+                                        <a href="https://www.youtube.com/watch?v=xWVobc0v1A4">
+                                            <!--<i class="iconfont icon-HCI"></i>-->
+                                            <img class="paper_img" src="img/icon_video.png" alt="icon_paper">
+                                            <span>
+                                                Video
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div id="Publications1" class="display">
+                        <% for(var i = 0 ; i<dataPatent.length ;i++) { %>
+                        <% var aaa = "prominent" %>
+                        <% if(i%2 === 0){ %>
+                        <% aaa = "prominent" %>
+                        <% }else{ %>
+                        <% aaa = "" %>
+                        <%}%>
+                        <div class="body3_list prepare_fadein <%- aaa %>" >
+                            <div class="list_container ">
+                                <p>
+                                    <%= dataPatent[i].item %>
+                                </p>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                    <div id="Publications2" class="display">
+                        <% for(var i = 0 ; i<dataSoftware.length ;i++) { %>
+                        <% var aaa = "prominent" %>
+                        <% if(i%2 === 0){ %>
+                        <% aaa = "prominent" %>
+                        <% }else{ %>
+                        <% aaa = "" %>
+                        <%}%>
+                        <div class="body3_list prepare_fadein <%- aaa %>" >
+                            <div class="list_container ">
+                                <p>
+                                    <%= dataSoftware[i].item %>
+                                </p>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                    <div id="Publications3" class="display">
+                        <% for(var i = 0 ; i<dataAwards.length ;i++) { %>
+                        <% var aaa = "prominent" %>
+                        <% if(i%2 === 0){ %>
+                        <% aaa = "prominent" %>
+                        <% }else{ %>
+                        <% aaa = "" %>
+                        <%}%>
+                        <div class="body3_list prepare_fadein <%- aaa %>" >
+                            <div class="list_container ">
+                                <p>
+                                    <%= dataAwards[i].item %>
+                                </p>
+                                <div class="pub_more2">
+                                    <a href="javascript:">
+                                        <!--<i class="iconfont icon-HCI"></i>-->
+                                        <img class="paper_img" src="img/icon_pdf.png" alt="icon_paper">
+                                        <span>
+                                            PDF
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </ul>
+                <div class="body2_stair2 button display">
+                    <a id="Publications_more" class="display" href="javascript:">
+                        Learn more
+                    </a>
+                    <script>
+                        $(document).ready(function(){
+                            var Publications_num = 6;
+                            $("#Publications_more").on("click", function () {
+                                Publications_num += 1;
+                                $("#Publications0 > .body3_list").eq(Publications_num).removeClass("display")
+                                    .addClass("prepare_fadein").animate({opacity:1,filter:'Alpha(opacity=90)'},500);
+                                Publications_num += 1;
+                                $("#Publications0 > .body3_list").eq(Publications_num).removeClass("display")
+                                    .addClass("prepare_fadein").animate({opacity:1,filter:'Alpha(opacity=90)'},500);
+                                if($("#Publications0 > .body3_list").length <= Publications_num+1){
+                                    $("#Publications_more").hide()
+
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+            <div id="div4" class="body4">
+                <h1 class="body1_stair1 title body4_title">
+                    <p class="prepare_fadein">
+                        Events
+                    </p>
+                </h1>
+                <div class="body4_main">
+                    <div class="body4_main_container clearfix prepare_fadein">
+                        <div class="events_stair1_left">
+                            <a  href="event/event9.html">
+                                <img src="img/event/geek3.jpg" alt="event1">
+                            </a>
+                            <div class="event_detail">
+                                <a  href="event/event9.html">
+                                    <p class="event_title">
+                                        The MagicPAPER Group won “the Single award of interaction design” in Life Geek 2018
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-12-1
+                                </p>
+                            </div>
+                        </div>
+                        <div class="events_stair1_right">
+                            <div class="event_item">
+                                <a  href="event/event8.html">
+                                    <p class="event_title">
+                                        The MagicPAPER group won “the Best demo honorable mention award” in ISS 2018
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-11-29
+                                </p>
+                            </div>
+                            <div class="event_item">
+                                <a  href="event/event7.html">
+                                    <p class="event_title">
+                                        The Anmoji group won “the SIC People’s Choice Honorable mention award” in UIST2018
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-10-21
+                                </p>
+                            </div>
+                            <div class="event_item">
+                                <a  href="event/event6.html">
+                                    <p class="event_title">
+                                        MagicPAPER Group has come to SUI&UIST
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-10-15
+                                </p>
+                            </div>
+                            <div class="event_item">
+                                <a href="event/event4.html">
+                                    <p class="event_title">
+                                        ISS Demonstration
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-09-03
+                                </p>
+                            </div>
+                            <div class="event_item">
+                                <a  href="event/event3.html">
+                                    <p class="event_title">
+                                        SUI &UIST Demonstration
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-08-26
+                                </p>
+                            </div>
+                            <div class="event_item">
+                                <a  href="event/event2.html">
+                                    <p class="event_title">
+                                        UIST Student Innovation Contest
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-08-04
+                                </p>
+                            </div>
+                            <div class="event_item">
+                                <a  href="event/event1.html">
+                                    <p class="event_title">
+                                        MagicPAPER Group come to ACM SIGCHI DIS 2018
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-06-13
+                                </p>
+                            </div>
+                            <!--<div class="event_item">-->
+                                <!--<a  href="event5.html">-->
+                                    <!--<p class="event_title">-->
+                                        <!--UXPA China Full paper-->
+                                    <!--</p>-->
+                                <!--</a>-->
+                                <!--<p class="event_time">-->
+                                    <!--2018-09-08-->
+                                <!--</p>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                    <div class="body4_main_container clearfix display">
+                        <div class="events_stair1_left">
+                            <div class="event_item">
+                                <a  href="event/event1.html">
+                                    <p class="event_title">
+                                        MagicPAPER Group come to ACM SIGCHI DIS 2018!
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-06-13
+                                </p>
+                            </div>
+                            <div class="event_item">
+                                <a  href="event/event1.html">
+                                    <p class="event_title">
+                                        MagicPAPER Group come to ACM SIGCHI DIS 2018!
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-06-13
+                                </p>
+                            </div>
+                            <div class="event_item">
+                                <a  href="event/event1.html">
+                                    <p class="event_title">
+                                        MagicPAPER Group come to ACM SIGCHI DIS 2018!
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-06-13
+                                </p>
+                            </div>
+                        </div>
+                        <div class="events_stair1_right">
+                            <div class="event_item">
+                                <a  href="event/event1.html">
+                                    <p class="event_title">
+                                        MagicPAPER Group come to ACM SIGCHI DIS 2018!
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-06-13
+                                </p>
+                            </div>
+                            <div class="event_item">
+                                <a  href="event/event1.html">
+                                    <p class="event_title">
+                                        MagicPAPER Group come to ACM SIGCHI DIS 2018!
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-06-13
+                                </p>
+                            </div>
+                            <div class="event_item">
+                                <a  href="event/event1.html">
+                                    <p class="event_title">
+                                        MagicPAPER Group come to ACM SIGCHI DIS 2018!
+                                    </p>
+                                </a>
+                                <p class="event_time">
+                                    2018-06-13
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="body2_stair2 button prepare_fadein display">
+                    <a id="Events_more" class="" href="javascript:">
+                        View more
+                    </a>
+                    <script>
+                        $(document).ready(function(){
+                            var Events_num = 0;
+                            $("#Events_more").on("click", function () {
+                                Events_num += 1;
+                                $(".body4_main_container").eq(Events_num).removeClass("display")
+                                    .addClass("prepare_fadein").animate({opacity:1,filter:'Alpha(opacity=90)'},500);
+                                if($(".body4_main_container").length <= Events_num+1){
+                                    $("#Events_more").hide()
+                                }
+                            });
+                        });
+                    </script>
+                </h1>
+            </div>
+            <div id="div5" class="body5">
+                <h1 class="body1_stair1 title prepare_fadein">
+                    <p>
+                        About
+                    </p>
+                </h1>
+                <div class="video prepare_fadein">
+
+                    <!--七牛云-->
+                    <!--<video class="adv_video" width="100%" height="100%" poster="#" controls>-->
+                        <!--<source src="http://phtwpnfn2.bkt.clouddn.com/%E6%9C%80%E7%BB%88%E7%89%88V3_%E7%BD%91%E7%AB%99.mp4" type="video/mp4">-->
+                        <!--&lt;!&ndash;<source src="media/movie.mov" type="video/mp4">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<source src="media/movie.mov" type="video/webm">&ndash;&gt;-->
+                        <!--<object data="http://phtwpnfn2.bkt.clouddn.com/%E6%9C%80%E7%BB%88%E7%89%88V3_%E7%BD%91%E7%AB%99.mp4" width="100%" height="100%">-->
+                            <!--<embed width="100%" height="100%" src="http://phtwpnfn2.bkt.clouddn.com/%E6%9C%80%E7%BB%88%E7%89%88V3_%E7%BD%91%E7%AB%99.mp4">-->
+                        <!--</object>-->
+
+                    <!--</video>-->
+
+                    <video class="adv_video" width="100%" height="100%" poster="#" controls>
+                        <source src="media/movie.mp4" type="video/mp4">
+                        <source src="media/movie.mp4" type="video/webm">
+                        <object data="media/movie.mp4" width="100%" height="100%">
+                            <embed width="100%" height="100%" src="media/movie.mp4">
+                        </object>
+
+                    </video>
+
+                </div>
+                <div class="body5_stair1 prepare_fadein clearfix">
+                    <div class="leader_img">
+                        <img src="img/leader.png" alt="leader">
+                    </div>
+                    <div class="leader_introduce">
+                        <h1 class="body5_title">
+                            <p>
+                                Team Leader
+                            </p>
+                        </h1>
+                        <p class="leader_name">
+                            Qin Wu
+                        </p>
+                        <h1 class="leader_detial">
+                            Qin Wu received the M.F.A. degree in information arts and design from the Tsinghua University, Beijing, China, in 2016. She is currently a Lecturer at the Department of Computer Science, Chengdu University of Information Technology, China. She is also currently a Research Assistant at the Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences, Shenzhen, China.Her research interests include human-computer interaction, user experience, and interaction design.
+                        </h1>
+                        <a href="pdf" class="leader_pdf">
+                            Curriculum Vitae (PDF)
+                        </a>
+                    </div>
+                </div>
+                <div class="body5_stair2">
+                    <div class="body5_stair2_container">
+                        <div class="member_title prepare_fadein">
+                            <p>
+                                Members
+                            </p>
+                        </div>
+                        <div id="clone2" class="member_container prepare_fadein">
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/余陈美.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Chenmei Yu(Group Leader)
+                                    </p>
+                                    <p class="person_card_content">
+                                        Mastermind/ Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/何芳芳.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Fangfang He (Group Leader)
+                                    </p>
+                                    <p class="person_card_content">
+                                        Mastermind/ Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <!--<div class="program_card member_card">-->
+                                <!--<div class="card_img">-->
+                                    <!--<img src="img/person/黄吉.jpg" alt="magicpaper">-->
+                                <!--</div>-->
+                                <!--<div class="intro">-->
+                                    <!--<p class="person_card_title">-->
+                                        <!--Ji Huang (Group Leader)-->
+                                    <!--</p>-->
+                                    <!--<p class="person_card_content">-->
+                                        <!--Hardware Developer/ Software Developer/ Mastermind-->
+                                    <!--</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/秦子雄.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Zixiong Qin (Group Leader)
+                                    </p>
+                                    <p class="person_card_content">
+                                        Hardware Developer/ Software Developer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/陈聪.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Cong Chen
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer/ Photographer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/曹家硕.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Jiashuo Cao
+                                    </p>
+                                    <p class="person_card_content">
+                                        Hardware Developer/ Software Developer/ Mastermind
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/王思睿.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Sirui Wang
+                                    </p>
+                                    <p class="person_card_content">
+                                        Software Developer/ Designer
+                                    </p>
+                                </div>
+                            </div>
+
+
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/王嘉元.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Jiayuan Wang
+                                    </p>
+                                    <p class="person_card_content">
+                                        Photographer/ Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/王梦婷.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Mengting Wang
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer/ Mastermind
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/苟民婵.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Minchan Gou
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/徐娆.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Rao Xu
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/周思含.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Sihan Zhou
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card">
+                                <div class="card_img">
+                                    <img src="img/person/赵雅兰.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Yalan Zhao
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer/ Mastermind
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/尹杨茂竹.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Maozhu Yinyang
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer/ Mastermind
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/黄英杰.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Yingjie Huang
+                                    </p>
+                                    <p class="person_card_content">
+                                        Mastermind/ Designer
+                                    </p>
+                                </div>
+                            </div>
+
+
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/李雨薇.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Yuwei Li
+                                    </p>
+                                    <p class="person_card_content">
+                                        Mastermind/ Designer
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/杨震.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Zhen Yang
+                                    </p>
+                                    <p class="person_card_content">
+                                        Software Developer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/翟福谊.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Fuyi Zhai
+                                    </p>
+                                    <p class="person_card_content">
+                                        Hardware Developer/ Software Developer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/李虎.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Hu Li
+                                    </p>
+                                    <p class="person_card_content">
+                                        Hardware Developer/ Software Developer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/王敬.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Jing Wang
+                                    </p>
+                                    <p class="person_card_content">
+                                        Mastermind/ Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/尚论瑜.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Lunyu Shang
+                                    </p>
+                                    <p class="person_card_content">
+                                        Software Developer/ Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/邓倩.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Qian Deng
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/苏彤.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Tong Su
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/谭舒平.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Shuping Tan
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/吴玮璇.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Weixuan Wu
+                                    </p>
+                                    <p class="person_card_content">
+                                        Mastermind
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/陈彦君.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Yanjun Chen
+                                    </p>
+                                    <p class="person_card_content">
+                                        Hardware Developer/ Software Developer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/骆宇.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Yu Luo
+                                    </p>
+                                    <p class="person_card_content">
+                                        Software Developer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/秦悦豪.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Yuehao Qin
+                                    </p>
+                                    <p class="person_card_content">
+                                        Mastermind/ Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/姜昱名.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Yumin Jiang
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!--<div class="program_card member_card display">-->
+                                <!--<div class="card_img">-->
+                                    <!--<img src="img/person/秦子雄.jpg" alt="magicpaper">-->
+                                <!--</div>-->
+                                <!--<div class="intro">-->
+                                    <!--<p class="person_card_title">-->
+                                        <!--Zixiong Qin-->
+                                    <!--</p>-->
+                                    <!--<p class="person_card_content">-->
+                                        <!--Hardware Developer/ Software Developer-->
+                                    <!--</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/姚嘉玉.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Jiayu Yao
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/徐睿.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Rui Xu
+                                    </p>
+                                    <p class="person_card_content">
+                                        Designer
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="program_card member_card display">
+                                <div class="card_img">
+                                    <img src="img/person/陈子贤.jpg" alt="magicpaper">
+                                </div>
+                                <div class="intro">
+                                    <p class="person_card_title">
+                                        Zixian Chen
+                                    </p>
+                                    <p class="person_card_content">
+                                        Software Developer
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="body2_stair2 button prepare_fadein">
+                            <a id="member_container" href="javascript:">
+                                View more
+                            </a>
+                            <script>
+                                $(document).ready(function(){
+                                    var member_num = 12;
+                                    $("#member_container").on("click", function () {
+                                        console.log("$(window).width()"+$(window).width())
+
+//                                        if($(window).width() > 1800){
+//                                            add_num = 8
+//                                        }
+//                                        if($(window).width() > 1300&&$(window).width() < 1800){
+//                                            add_num = 9
+//                                        }
+
+                                        for(; member_num < $(".member_card").length;){
+                                            $(".member_card").eq(member_num).removeClass("display")
+                                                .addClass("prepare_fadein").animate({opacity:1,filter:'Alpha(opacity=90)'},500);
+                                            if($(".member_card").length <= member_num+1){
+                                                $("#member_container").hide()
+
+                                            }
+                                            member_num += 1;
+
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body6">
+                <div class="body5_stair2_container">
+                    <h1 class="member_title prepare_fadein">
+                        <p>
+                            Activities
+                        </p>
+                    </h1>
+                </div>
+                <div class="activities">
+                    <div class="activities_container prepare_fadein clearfix">
+                        <div class="act">
+                            <img src="img/activity1.jpg" alt="">
+                            <p class="meeting">
+                                <span>
+                                   HAPPY ANNIVERSARY
+                                </span>
+                            </p>
+                        </div>
+                        <div class="act">
+                            <img src="img/activity2.jpg" alt="">
+                            <p class="meeting">
+                                <span>
+                                   ANMOJI
+                                </span>
+                            </p>
+                        </div>
+                        <div class="act">
+                            <img src="img/activity3.jpg" alt="">
+                            <p class="meeting">
+                                <span>
+                                   FIELD INVESTIGATION
+                                </span>
+                            </p>
+                        </div>
+                        <!--<div class="shadow1">-->
+                             <!--<span class="meeting">-->
+                            <!--</span>-->
+                        <!--</div>-->
+                        <!--<div class="shadow2">-->
+                            <!--<span class="brainstrming">-->
+                                <!--BRAINSTRMING-->
+                            <!--</span>-->
+                        <!--</div>-->
+
+                    </div>
+                </div>
+                <!--<div class="body5_stair2_container">-->
+                    <!--<h1 class="member_title">-->
+                        <!--<p>-->
+                            <!--See us-->
+                        <!--</p>-->
+                    <!--</h1>-->
+                <!--</div>-->
+                <!--<div class="video">-->
+                    <!--<img src="img/video.jpg" alt="">-->
+                    <!--<div class="video_intro">-->
+                        <!--<p>The video of our studio in 2017</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            </div>
+            <div class="main_footer">
+                <div class="footer_stair1">
+                    <h1>
+                        Business Cooperation: wuqin@cuit.edu.cn
+                    </h1>
+                    <h2>
+                        Address: No.24 Block 1, Xuefu Road, Chengdu, China
+                    </h2>
+                    <h3>
+                        Office: No310 Room, Electronic computing center building
+                    </h3>
+                </div>
+                <div class="footer_stair2">
+                    <h1>
+                        All Copyright Reserved &copy; Interactive Media Studio
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/fadein.js"></script>
+
+        <script src="js/ex_tab.js"></script>
+
+        <!--构造clone 人物卡片-->
+        <script>
+            if( goPAGE() == "pc"
+                &&window.devicePixelRatio >= 1.5){
+                $("#clone2")
+                    .append("<div class='clone2' style=\"width: 12rem; margin: 13px 16px;\"></div>")
+                    .append("<div class='clone2' style=\"width: 12rem; margin: 13px 16px;\"></div>")
+            }
+            else{
+                $("#clone2").append("<div class='clone2' style=\"width: 290px; margin: 27px 40px;\"></div>")
+                    .append("<div class='clone2' style=\"width: 290px; margin: 27px 40px;\"></div>")
+
+            }
+
+        </script>
+
+        <!--导航，点击切换-->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#div1Link").click(function() {
+                    $("html, body").animate({
+                        scrollTop: $("#div1").offset().top
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                    return false;
+                });
+
+                $("#div2Link").click(function() {
+                    $("html, body").animate({
+                        scrollTop: $("#div2").offset().top }, {duration: 500,easing: "swing"});
+                    return false;});
+
+                $("#div3Link").click(function() {
+                    $("html, body").animate({
+                        scrollTop: $("#div3").offset().top }, {duration: 500,easing: "swing"});
+                    return false;});
+
+                $("#div4Link").click(function() {
+                    $("html, body").animate({
+                        scrollTop: $("#div4").offset().top }, {duration: 500,easing: "swing"});
+                    return false;});
+
+                $("#div5Link").click(function() {
+                    $("html, body").animate({
+                        scrollTop: $("#div5").offset().top }, {duration: 500,easing: "swing"});
+                    return false;});
+            });
+        </script>
+
+
+    </body>
+</html>
