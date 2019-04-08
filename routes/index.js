@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const poster = require('./poster');
+// const poster = require('./poster');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 let ims;

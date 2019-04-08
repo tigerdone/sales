@@ -25,28 +25,28 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-let ims;
+let sales;
 let project;
 let users;
 // mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone
 // mongodb://localhost:27017/myblog
 MongoClient.connect('mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone', function (err, client) {
     if (err) throw err;
-    ims  = client.db('tigerdone').collection('ims');
+    sales  = client.db('tigerdone').collection('salesDing');
     project  = client.db('tigerdone').collection('project');
     users  = client.db('tigerdone').collection('users')
 });
 router.get('/Data', function (req, res) {
     console.log(req.query.name);
-    ims.find({type:req.query.name}).toArray(function (err, result) {
+    sales.find().toArray(function (err, result) {
         if (err) throw err;
         res.json(result);
     })
 });
 router.post('/insertPaper', checkLogin, function (req, res) {
-    let box = req.body;
+    let box = req.body;getProdata
     delete box._id;
-    ims.insertOne(box, function(err) {
+    sales.insertOne(box, function(err) {
         if (err) throw err;
         console.log("1 document inserted");
     });
@@ -57,7 +57,7 @@ router.post('/updatePaper', checkLogin, function (req, res) {
     let _id = mongoose.Types.ObjectId(req.body._id);
     let box = req.body;
     delete box._id;
-    ims.update({_id:_id}, box , function(err) {
+    sales.update({_id:_id}, box , function(err) {
         if (err) throw err;
         console.log("1 document update");
     });
@@ -68,7 +68,7 @@ router.post('/deleteOne', checkLogin, function (req, res) {
     let _id = mongoose.Types.ObjectId(req.body._id);
     let box = req.body;
     delete box._id;
-    ims.deleteOne({_id:_id} , function(err) {
+    sales.deleteOne({_id:_id} , function(err) {
         if (err) throw err;
         console.log("1 document delete");
     });

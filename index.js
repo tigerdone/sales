@@ -19,9 +19,11 @@ const checkLogin = require('./routes/check').checkLogin;
 // 设置模板目录
 app.set('views', path.join(__dirname, './views'));
 // 设置模板引擎为 ejs
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
+
 //设置cookie 中间件
 app.use(cookieParser('sessionTest'));
+
 app.use(session({
     name: config.session.key, // 设置 cookie 中保存 session id 的字段名称
     secret: config.session.secret, // 通过设置 secret 来计算 hash 值并放在 cookie 中，使产生的 signedCookie 防篡改
@@ -37,11 +39,7 @@ app.use(session({
 app.use(bodyparser.json()); // 使用bodyparder中间件，
 app.use(bodyparser.urlencoded({ extended: true }));
 // 设置静态文件目录
-app.use('/', express.static(path.join(__dirname, 'public/ims')));
 app.use('/admin', express.static(path.join(__dirname, 'public/admin')));
-app.use('/admin/proImg', checkLogin, express.static(path.join(__dirname, 'public/image')));
-app.use('/secbit', express.static(path.join(__dirname, 'public/secbit')));
-app.use('/tigerdone', express.static(path.join(__dirname, 'public/tigerdone')));
 
 // 设置模板全局常量c
 app.locals.blog = {
