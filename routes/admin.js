@@ -44,7 +44,7 @@ router.get('/Data', function (req, res) {
     })
 });
 router.post('/insertPaper', checkLogin, function (req, res) {
-    let box = req.body;getProdata
+    let box = req.body;
     delete box._id;
     sales.insertOne(box, function(err) {
         if (err) throw err;
