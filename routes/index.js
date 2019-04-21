@@ -15,13 +15,13 @@ MongoClient.connect('mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942
 router.get('/', function (req, res) {
     ims.find().toArray(function (err, result) {
         if (err) throw err;
-        let dataPaper = [];
+        let dataoneOrder = [];
         let dataPatent = [];
         let dataSoftware = [];
         let dataAwards = [];
         result.forEach(function (item) {
-            if(item.type === "paper"){
-                dataPaper.push(item)
+            if(item.type === "oneOrder"){
+                dataoneOrder.push(item)
             }
             if(item.type === "patent"){
                 dataPatent.push(item)
@@ -35,7 +35,7 @@ router.get('/', function (req, res) {
         });
         res.render('index',
             {
-                dataPaper:dataPaper,
+                dataoneOrder:dataoneOrder,
                 dataPatent:dataPatent,
                 dataSoftware:dataSoftware,
                 dataAwards:dataAwards

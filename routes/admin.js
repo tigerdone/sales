@@ -28,13 +28,16 @@ const upload = multer({ storage: storage });
 let sales;
 let project;
 let users;
+let price;
+
 // mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone
-// mongodb://localhost:27017/myblog
-MongoClient.connect('mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone', function (err, client) {
+// mongodb://localhost:27017/sales
+MongoClient.connect('mongodb://localhost:27017/sales', function (err, client) {
     if (err) throw err;
-    sales  = client.db('tigerdone').collection('salesDing');
+    sales  = client.db('sales').collection('order');
     project  = client.db('tigerdone').collection('project');
-    users  = client.db('tigerdone').collection('users')
+    users  = client.db('sales').collection('user');
+    price  = client.db('sales').collection('price');
 });
 router.get('/Data', function (req, res) {
     console.log(req.query.name);
@@ -43,16 +46,28 @@ router.get('/Data', function (req, res) {
         res.json(result);
     })
 });
-router.post('/insertPaper', checkLogin, function (req, res) {
+router.get('/price', function (req, res) {
+    price.find().toArray(function (err, result) {
+        if (err) throw err;
+        res.json(result);
+    })
+});
+router.post('/insertoneOrder', checkLogin, function (req, res) {
     let box = req.body;
     delete box._id;
-    sales.insertOne(box, function(err) {
-        if (err) throw err;
-        console.log("1 document inserted");
+    box.time = (new Date()).toLocaleDateString();
+    box.saler = req.session.user;
+    sales.find({time:box.time}).toArray(function (err, result) {
+        console.log(result.length);
+        box.orderNum = box.time+ "-" + box.saler + "-"  + (result.length+1);
+        sales.insertOne(box, function(err) {
+            if (err) throw err;
+            console.log("1 document inserted");
+            res.sendStatus(200);
+        });
     });
-    res.sendStatus(200);
 });
-router.post('/updatePaper', checkLogin, function (req, res) {
+router.post('/updateoneOrder', checkLogin, function (req, res) {
     console.log("req.body._id"+req.body._id);
     let _id = mongoose.Types.ObjectId(req.body._id);
     let box = req.body;
@@ -80,6 +95,7 @@ router.post('/login', upload.array(), function (req, res) {
         let conSo =  result.find(function(item){
             return item.username === req.body.inputName && item.password === req.body.inputPassword;
         });
+        console.log(conSo);
         if (conSo){
             req.session.user = conSo.username;
             // res.sendStatus(200);
@@ -95,8 +111,12 @@ router.get('/loginOut', function (req, res) {
     req.session.destroy();
     // 登出成功后跳转到主页
     // res.redirect('/')
-    res.sendStatus(200)
+    res.sendStatus(200);
 });
+router.get('/getSaler', function (req, res) {
+    res.send({username:req.session.user});
+});
+
 
 //----------project---------//
 router.post('/uploadImage', checkLogin, upload.single('file'), function (req, res) {
