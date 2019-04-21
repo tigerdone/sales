@@ -5,6 +5,7 @@ const multer = require('multer'); // v1.0.5
 const mongoose = require('mongoose');
 const checkLogin = require('../middlewares/check').checkLogin;
 const fs = require('fs');
+const moment = require('moment');
 
 const createFolder = function (folder) {
     try{
@@ -55,16 +56,22 @@ router.get('/price', function (req, res) {
 router.post('/insertoneOrder', checkLogin, function (req, res) {
     let box = req.body;
     delete box._id;
-    box.time = (new Date()).toLocaleDateString();
+    box.time = moment(Date.now()).format("YYYY-MM-DD");
     box.saler = req.session.user;
-    sales.find({time:box.time}).toArray(function (err, result) {
+    users.find({username:box.saler}).toArray(function (err, result) {
         console.log(result.length);
-        box.orderNum = box.time+ "-" + box.saler + "-"  + (result.length+1);
+        box.orderNum = box.time+ "-" + box.saler + "-"  + (++result[0].orders);
         sales.insertOne(box, function(err) {
             if (err) throw err;
             console.log("1 document inserted");
-            res.sendStatus(200);
         });
+        let id = mongoose.Types.ObjectId(result[0]._id);
+        delete result[0]._id;
+        users.update({_id:id},result[0], function(err) {
+            if (err) throw err;
+            console.log("1 document inserted");
+        });
+        res.sendStatus(200);
     });
 });
 router.post('/updateoneOrder', checkLogin, function (req, res) {
