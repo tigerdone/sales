@@ -7,7 +7,7 @@ let ims;
 
 // mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone
 // mongodb://localhost:27017/myblog
-MongoClient.connect('mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone', function (err, client) {
+MongoClient.connect('mongodb://localhost:27017/myblog', function (err, client) {
     if (err) throw err;
     ims  = client.db('tigerdone').collection('ims')
 });

@@ -32,9 +32,9 @@ app.use(session({
     cookie: {
         maxAge: config.session.maxAge// 过期时间，过期后 cookie 中的 session id 自动删除
     },
-    store: new MongoStore({// 将 session 存储到 mongodb
-        url: config.mongodb// mongodb 地址
-    })
+    // store: new MongoStore({// 将 session 存储到 mongodb
+    //     url: config.mongodb// mongodb 地址
+    // })
 }));
 app.use(bodyparser.json()); // 使用bodyparder中间件，
 app.use(bodyparser.urlencoded({ extended: true }));

@@ -47,6 +47,14 @@ router.get('/Data', function (req, res) {
         res.json(result);
     })
 });
+router.get('/users', function (req, res) {
+    console.log(req.query.name);
+    users.find().toArray(function (err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.json(result);
+    })
+});
 router.get('/price', function (req, res) {
     price.find().toArray(function (err, result) {
         if (err) throw err;
