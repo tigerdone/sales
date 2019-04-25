@@ -3,10 +3,9 @@ const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const multer = require('multer'); // v1.0.5
 const mongoose = require('mongoose');
-const checkLogin = require('../middlewares/check').checkLogin;
+const checkLogin = require('./check').checkLogin;
 const fs = require('fs');
 const moment = require('moment');
-
 const createFolder = function (folder) {
     try{
         fs.accessSync(folder)
@@ -30,6 +29,7 @@ let sales;
 let project;
 let users;
 let price;
+let store;
 
 // mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone
 // mongodb://localhost:27017/sales
@@ -39,19 +39,13 @@ MongoClient.connect('mongodb://localhost:27017/sales', function (err, client) {
     project  = client.db('tigerdone').collection('project');
     users  = client.db('sales').collection('user');
     price  = client.db('sales').collection('price');
+    store  = client.db('sales').collection('store');
 });
+
+// ------------order--------------//
 router.get('/Data', function (req, res) {
-    console.log(req.query.name);
     sales.find().toArray(function (err, result) {
         if (err) throw err;
-        res.json(result);
-    })
-});
-router.get('/users', function (req, res) {
-    console.log(req.query.name);
-    users.find().toArray(function (err, result) {
-        if (err) throw err;
-        console.log(result);
         res.json(result);
     })
 });
@@ -61,29 +55,7 @@ router.get('/price', function (req, res) {
         res.json(result);
     })
 });
-router.post('/insertoneOrder', checkLogin, function (req, res) {
-    let box = req.body;
-    delete box._id;
-    box.time = moment(Date.now()).format("YYYY-MM-DD");
-    box.saler = req.session.user;
-    users.find({username:box.saler}).toArray(function (err, result) {
-        console.log(result.length);
-        box.orderNum = box.time+ "-" + box.saler + "-"  + (++result[0].orders);
-        sales.insertOne(box, function(err) {
-            if (err) throw err;
-            console.log("1 document inserted");
-        });
-        let id = mongoose.Types.ObjectId(result[0]._id);
-        delete result[0]._id;
-        users.update({_id:id},result[0], function(err) {
-            if (err) throw err;
-            console.log("1 document inserted");
-        });
-        res.sendStatus(200);
-    });
-});
 router.post('/updateoneOrder', checkLogin, function (req, res) {
-    console.log("req.body._id"+req.body._id);
     let _id = mongoose.Types.ObjectId(req.body._id);
     let box = req.body;
     delete box._id;
@@ -94,7 +66,6 @@ router.post('/updateoneOrder', checkLogin, function (req, res) {
     res.sendStatus(200);
 });
 router.post('/deleteOne', checkLogin, function (req, res) {
-    console.log("req.body._id"+req.body._id);
     let _id = mongoose.Types.ObjectId(req.body._id);
     let box = req.body;
     delete box._id;
@@ -104,13 +75,14 @@ router.post('/deleteOne', checkLogin, function (req, res) {
     });
     res.sendStatus(200);
 });
+
+//-----------login------------//
 router.post('/login', upload.array(), function (req, res) {
     users.find().toArray(function (err, result) {
         if (err) throw err;
         let conSo =  result.find(function(item){
             return item.username === req.body.inputName && item.password === req.body.inputPassword;
         });
-        console.log(conSo);
         if (conSo){
             req.session.user = conSo.username;
             // res.sendStatus(200);
@@ -132,39 +104,144 @@ router.get('/getSaler', function (req, res) {
     res.send({username:req.session.user});
 });
 
-
-//----------project---------//
-router.post('/uploadImage', checkLogin, upload.single('file'), function (req, res) {
-    console.dir(req.file);
-    res.sendStatus(200);
-});
-router.get('/checkLogin', function (req, res) {
-    if (!req.session.user){
-        return res.send({isLogined:false});
-    }
-    return res.send({isLogined:true});
-});
-router.get('/getProdata',function (req,res) {
-    project.find().toArray(function (err, result) {
+// ----------user-setting-----------//
+router.get('/users', function (req, res) {
+    users.find().toArray(function (err, result) {
         if (err) throw err;
         res.json(result);
     })
 });
-router.post('/proInsert', checkLogin, function (req, res) {
+router.post('/deleteuser', checkLogin, function (req, res) {
+    let _id = mongoose.Types.ObjectId(req.body._id);
     let box = req.body;
     delete box._id;
-    project.insertOne(box, function(err) {
+    if (box.username === "supermanage"&&box.password === "supermanage") {
+        res.send({message:"无法删除本用户名"});
+    }
+    else {
+        users.deleteOne({_id:_id} , function(err) {
+            if (err) throw err;
+            console.log("1 document delete");
+        });
+        res.sendStatus(200);
+    }
+});
+router.post("/insertuser", checkLogin, function (req, res) {
+    let box = req.body;
+    delete box._id;
+    users.find().toArray(function (err, result) {
+        if (err) throw err;
+        let conSo =  result.find(function(item){
+            return item.username === box.username;
+        });
+        if (conSo){
+            res.send({message:"用户名号被注册了"});
+        }
+        else{
+            users.insert(box, function(err) {
+                if (err) throw err;
+                console.log("1 document inserted");
+            });
+            res.sendStatus(200);
+        }
+    });
+});
+router.post("/updateuser", checkLogin, function (req, res) {
+    let box = req.body;
+    let id = mongoose.Types.ObjectId(box._id);
+    delete box._id;
+    users.update({_id:id},box, function(err) {
         if (err) throw err;
         console.log("1 document inserted");
     });
     res.sendStatus(200);
 });
-router.post('/proDeleOne',checkLogin,function (req, res) {
-    console.log("req.body._id"+req.body._id);
+router.post('/insertoneOrder', checkLogin, function (req, res) {
+    let box = req.body;
+    delete box._id;
+    box.time = moment(Date.now()).format("YYYY-MM-DD");
+    box.saler = req.session.user;
+    users.find({username:box.saler}).toArray(function (err, result) {
+        box.orderNum = box.time+ "-" + box.saler + "-"  + (++result[0].orders);
+        sales.insertOne(box, function(err) {
+            if (err) throw err;
+            console.log("1 document inserted");
+        });
+        let id = mongoose.Types.ObjectId(result[0]._id);
+        delete result[0]._id;
+        users.update({_id:id},result[0], function(err) {
+            if (err) throw err;
+            console.log("1 document inserted");
+        });
+        res.sendStatus(200);
+    });
+});
+
+// -------------setPrice---------------//
+router.post('/setprice', checkLogin, function (req, res) {
+    let box = req.body;
+    price.insert(box, function(err) {
+        if (err) throw err;
+        console.log("1 document inserted");
+    });
+    res.sendStatus(200);
+});
+router.post('/updatePrice', checkLogin, function (req, res) {
+    let box = req.body;
+    let id = mongoose.Types.ObjectId(box._id);
+    delete box._id;
+    price.update({_id:id}, box, function(err) {
+        if (err) throw err;
+        console.log("1 document inserted");
+    });
+    res.sendStatus(200);
+});
+// -----------Store--------------//
+router.get('/getstore', function (req, res) {
+    store.find().toArray(function (err, result) {
+        if (err) throw err;
+        res.json(result);
+    })
+});
+router.post("/insertStore", checkLogin, function (req, res) {
+    let box = req.body;
+    delete box._id;
+    store.find().toArray((err, result) =>{
+        if (err) throw err;
+        let conSo =  result.find(function(item){
+            return item.name === box.name;
+        });
+        if (conSo){
+            res.send({message:"有相同的物品了"});
+        }
+        else{
+            store.insert(box, function(err) {
+                if (err) throw err;
+                console.log("1 document inserted");
+            });
+            res.sendStatus(200);
+        }
+    });
+});
+router.post("/updateStore", checkLogin, function (req, res) {
+    let box = req.body;
+    let id = mongoose.Types.ObjectId(box._id);
+    delete box._id;
+    store.find({_id:id}).toArray((err, result) =>{
+        if (err) throw err;
+        box.total = parseInt(result[0].total)+parseInt(box.total);
+        store.update({_id:id},box, function(err) {
+            if (err) throw err;
+            console.log("1 document inserted");
+        });
+    });
+    res.sendStatus(200);
+});
+router.post("/deleStore", checkLogin, function (req, res) {
     let _id = mongoose.Types.ObjectId(req.body._id);
     let box = req.body;
     delete box._id;
-    project.deleteOne({_id:_id} , function(err) {
+    store.deleteOne({_id:_id} , function(err) {
         if (err) throw err;
         console.log("1 document delete");
     });
@@ -172,4 +249,14 @@ router.post('/proDeleOne',checkLogin,function (req, res) {
 });
 
 
+// ----------------checkLogin----------------//
+router.get('/checkLogin', function (req, res) {
+    if (!req.session.user){
+        return res.send({isLogined:false});
+    }
+    return res.send({isLogined:true});
+});
+
 module.exports = router;
+
+
