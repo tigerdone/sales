@@ -106,10 +106,10 @@ router.post('/insertoneOrder', checkLogin, function (req, res) {
                 totalUp:box.totalMoney,
                 phone:box.phoneNumber,
             };
-            getword.getword(inputMessage,"addblack");
-            getword.getword(inputMessage,"addbule");
-            getword.getword(inputMessage,"addRed");
-            getword.getword(inputMessage,"addYellow");
+            getword.getword(inputMessage,"白票");
+            // getword.getword(inputMessage,"addbule");
+            getword.getword(inputMessage,"红票");
+            getword.getword(inputMessage,"黄票");
         });
 
         res.sendStatus(200);
