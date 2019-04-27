@@ -36,7 +36,9 @@ app.use(session({
 app.use(bodyparser.json()); // 使用bodyparder中间件，
 app.use(bodyparser.urlencoded({ extended: true }));
 // 设置静态文件目录
+app.use('/', express.static(path.join(__dirname, 'public/admin')));
 app.use('/admin', express.static(path.join(__dirname, 'public/admin')));
+app.use('/word', express.static(path.join(__dirname, 'pdf')));
 
 // 设置模板全局常量c
 app.locals.blog = {

@@ -13,34 +13,7 @@ MongoClient.connect('mongodb://localhost:27017/myblog', function (err, client) {
 });
 
 router.get('/', function (req, res) {
-    ims.find().toArray(function (err, result) {
-        if (err) throw err;
-        let dataoneOrder = [];
-        let dataPatent = [];
-        let dataSoftware = [];
-        let dataAwards = [];
-        result.forEach(function (item) {
-            if(item.type === "oneOrder"){
-                dataoneOrder.push(item)
-            }
-            if(item.type === "patent"){
-                dataPatent.push(item)
-            }
-            if(item.type === "software_copyright"){
-                dataSoftware.push(item)
-            }
-            if(item.type === "awards"){
-                dataAwards.push(item)
-            }
-        });
-        res.render('index',
-            {
-                dataoneOrder:dataoneOrder,
-                dataPatent:dataPatent,
-                dataSoftware:dataSoftware,
-                dataAwards:dataAwards
-            });
-    })
+    res.render('index');
 });
 
 router.get('/pdf', function (req, res) {

@@ -1,44 +1,32 @@
-var JSZip = require('jszip');
-var Docxtemplater = require('docxtemplater');
+const JSZip = require('jszip');
+const Docxtemplater = require('docxtemplater');
+const fs = require('fs');
+const path = require('path');
+//Load the docx file as a binary 'add.docx'
 
-var fs = require('fs');
-var path = require('path');
-
-//Load the docx file as a binary
-var content = fs
-    .readFileSync(path.resolve(__dirname, 'add.docx'), 'binary');
-
-var zip = new JSZip(content);
-
-var doc = new Docxtemplater();
-doc.loadZip(zip);
-
-//set the templateVariables
-doc.setData({
-    name1: 'John',
-    name2: 'Doe',
-    value1: '0652455478',
-    value2: 'New Website'
-});
-
-try {
-    // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
-    doc.render()
-}
-catch (error) {
-    var e = {
-        message: error.message,
-        name: error.name,
-        stack: error.stack,
-        properties: error.properties,
+let getword=(box,filename)=>{
+    const content = fs.readFileSync(path.resolve(__dirname, filename+".docx"), 'binary');
+    const zip = new JSZip(content);
+    const doc = new Docxtemplater();
+    doc.loadZip(zip);
+    //set the templateVariables
+    doc.setData(box);
+    try {
+        doc.render()
     }
-    console.log(JSON.stringify({error: e}));
-    // The error thrown here contains additional information when logged with JSON.stringify (it contains a property object).
-    throw error;
-}
+    catch (error) {
+        var e = {
+            message: error.message,
+            name: error.name,
+            stack: error.stack,
+            properties: error.properties,
+        };
+        console.log(JSON.stringify({error: e}));
+        throw error;
+    }
+    var buf = doc.getZip().generate({type: 'nodebuffer'});
+    // buf is a nodejs buffer, you can either write it to a file or do anything else with it.
+    fs.writeFileSync(path.resolve(__dirname, filename+"out.docx"), buf);
+};
 
-var buf = doc.getZip()
-    .generate({type: 'nodebuffer'});
-
-// buf is a nodejs buffer, you can either write it to a file or do anything else with it.
-fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
+module.exports.getword = getword;

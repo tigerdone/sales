@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const checkLogin = require('./check').checkLogin;
 const fs = require('fs');
 const moment = require('moment');
+const path = require("path");
 const createFolder = function (folder) {
     try{
         fs.accessSync(folder)
@@ -13,6 +14,8 @@ const createFolder = function (folder) {
         fs.mkdirSync(folder)
     }
 };
+const getword = require("../pdf/pdf1.js");
+
 const uploadFolder = './public/image';
 createFolder(uploadFolder);
 const storage = multer.diskStorage({
@@ -26,7 +29,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 let sales;
-let project;
 let users;
 let price;
 let store;
@@ -36,7 +38,6 @@ let store;
 MongoClient.connect('mongodb://localhost:27017/sales', function (err, client) {
     if (err) throw err;
     sales  = client.db('sales').collection('order');
-    project  = client.db('tigerdone').collection('project');
     users  = client.db('sales').collection('user');
     price  = client.db('sales').collection('price');
     store  = client.db('sales').collection('store');
@@ -44,10 +45,18 @@ MongoClient.connect('mongodb://localhost:27017/sales', function (err, client) {
 
 // ------------order--------------//
 router.get('/Data', function (req, res) {
-    sales.find().toArray(function (err, result) {
-        if (err) throw err;
-        res.json(result);
-    })
+    if (req.session.user === "supermanage") {
+        sales.find().toArray(function (err, result) {
+            if (err) throw err;
+            res.json(result);
+        })
+    }
+    else{
+        sales.find({saler:req.session.user}).toArray(function (err, result) {
+            if (err) throw err;
+            res.json(result);
+        })
+    }
 });
 router.get('/price', function (req, res) {
     price.find().toArray(function (err, result) {
@@ -75,13 +84,44 @@ router.post('/deleteOne', checkLogin, function (req, res) {
     });
     res.sendStatus(200);
 });
+router.post('/insertoneOrder', checkLogin, function (req, res) {
+    let box = req.body;
+    delete box._id;
+    box.time = moment(Date.now()).format("YYYY-MM-DD");
+    box.saler = req.session.user;
+    users.find({username:box.saler}).toArray(function (err, result) {
+        box.orderNum = box.time+ "-" + box.saler + "-"  + (++result[0].orders);
+        sales.insertOne(box, function(err) {
+            if (err) throw err;
+            console.log("1 document inserted");
+            let inputMessage = {
+                time:box.time,
+                adultPrice:box.adultPrice,
+                personAll:parseInt(box.adultNum)+parseInt(box.childNum),
+                totalLow:box.totalLow,
+                childNum :box.childNum,
+                adultNum :box.adultNum,
+                cloth:parseInt(box.adultNum)+parseInt(box.childNum),
+                plup:box.adultNum,
+                totalUp:box.totalMoney,
+                phone:box.phoneNumber,
+            };
+            getword.getword(inputMessage,"addblack");
+            getword.getword(inputMessage,"addbule");
+            getword.getword(inputMessage,"addRed");
+            getword.getword(inputMessage,"addYellow");
+        });
+
+        res.sendStatus(200);
+    });
+});
 
 //-----------login------------//
 router.post('/login', upload.array(), function (req, res) {
     users.find().toArray(function (err, result) {
         if (err) throw err;
         let conSo =  result.find(function(item){
-            return item.username === req.body.inputName && item.password === req.body.inputPassword;
+            return item.username === req.body.inputName && item.powerId === req.body.powerId && item.password === req.body.inputPassword;
         });
         if (conSo){
             req.session.user = conSo.username;
@@ -96,12 +136,15 @@ router.post('/login', upload.array(), function (req, res) {
 router.get('/loginOut', function (req, res) {
     // req.session.user = null;
     req.session.destroy();
-    // 登出成功后跳转到主页
     // res.redirect('/')
     res.sendStatus(200);
 });
 router.get('/getSaler', function (req, res) {
-    res.send({username:req.session.user});
+    // res.send({username:req.session.user});
+    users.find({username:req.session.user}).toArray(function (err, result) {
+        if (err) throw err;
+        res.json(result[0]);
+    })
 });
 
 // ----------user-setting-----------//
@@ -156,26 +199,6 @@ router.post("/updateuser", checkLogin, function (req, res) {
     });
     res.sendStatus(200);
 });
-router.post('/insertoneOrder', checkLogin, function (req, res) {
-    let box = req.body;
-    delete box._id;
-    box.time = moment(Date.now()).format("YYYY-MM-DD");
-    box.saler = req.session.user;
-    users.find({username:box.saler}).toArray(function (err, result) {
-        box.orderNum = box.time+ "-" + box.saler + "-"  + (++result[0].orders);
-        sales.insertOne(box, function(err) {
-            if (err) throw err;
-            console.log("1 document inserted");
-        });
-        let id = mongoose.Types.ObjectId(result[0]._id);
-        delete result[0]._id;
-        users.update({_id:id},result[0], function(err) {
-            if (err) throw err;
-            console.log("1 document inserted");
-        });
-        res.sendStatus(200);
-    });
-});
 
 // -------------setPrice---------------//
 router.post('/setprice', checkLogin, function (req, res) {
@@ -196,6 +219,7 @@ router.post('/updatePrice', checkLogin, function (req, res) {
     });
     res.sendStatus(200);
 });
+
 // -----------Store--------------//
 router.get('/getstore', function (req, res) {
     store.find().toArray(function (err, result) {
@@ -248,7 +272,6 @@ router.post("/deleStore", checkLogin, function (req, res) {
     res.sendStatus(200);
 });
 
-
 // ----------------checkLogin----------------//
 router.get('/checkLogin', function (req, res) {
     if (!req.session.user){
@@ -258,5 +281,3 @@ router.get('/checkLogin', function (req, res) {
 });
 
 module.exports = router;
-
-

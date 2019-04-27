@@ -1,7 +1,6 @@
-html {
-    background: url("../img/login.jpg") center top no-repeat fixed;
+ html {
+    /* background: url("../img/login.jpg") center top no-repeat fixed; */
 }
-
 html body{
     background-color: rgba(0,0,0,0);
 }
@@ -10,6 +9,9 @@ html body{
 }
 #root{
     background-color: rgba(0,0,0,0);
+    max-width: 1140px;
+    padding: 0 20px;
+    margin: 0 auto;
 }
 .firm_title{
     text-align: center;
@@ -17,7 +19,7 @@ html body{
     margin: 60px 0;
 }
 .container{
-    width: 440px;
+    min-width: 1140px;
     margin: 30px auto;
     border: 1px solid #e5e9ed;
     background: #ffffff9c;
@@ -25,29 +27,21 @@ html body{
     border-radius: 3px;
 }
 .login_box{
-
-    background-color: #ffffff9c;
-
+    background-color: #d0d3d1c4;
     padding: 35px 40px;
-
     border-radius: 3px;
-
-    width: 440px;
-
-    margin: 30px auto;
+    width: 390px;
+    margin: 0 auto;
 }
 .message_box{
     background-color: #ffffff9c;
-    /* padding: 0px 10px 0px 10px; */
     border-radius: 3px;
     width: 440px;
     margin: 20px auto;
 }
 .message_form{
     margin: 10px auto;
-
 }
-
 .item{
     text-align:  center;
     font-size: 23px;
@@ -56,9 +50,7 @@ html body{
     margin: 41px 0;
     display:  flex;
 }
-
 .input_message input{
-    margin: 5px 0 32px 0;
     display:  flex;
     height: 38px;
     border: 1px solid #e5e9ed;
@@ -81,60 +73,30 @@ html body{
 }
 .message_name{
     font-size: 20px;
-    font-weight: 700;
     padding: 0 0 0 3px;
+    margin: 11px 0 0 0;
 }
-button{
-    display: inline-block;
-    padding: 6px 12px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    /*width: 41%;*/
-    margin: 0 130px;
-    background-color: #46be68;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
+.message_name p{
+     font-weight: 700;
+     margin:  0;
 }
 .input_box{
     margin: 50px 0;
 }
 .input_item img{
-
     width: 42px;
-
     position:  relative;
-
     top: 2px;
-
     height: 36px;
-
     left: 5px;
 }
 .input_item input{
-
     height: 38px;
-
     border: 1px solid #e5e9ed;
-
     box-shadow: none;
-
     width: 87%;
-
     line-height: 60px;
-
     padding: 0 17px;
-
     font-size: 18px;
 }
 .input_item+.radio input{
@@ -143,7 +105,6 @@ button{
 .radio_item{
     display: inline-block;
     margin: 10px 10px;
-
 }
 .radio_item span{
     margin: 10px 10px;
@@ -151,34 +112,24 @@ button{
     position: relative;
     top: 2px;
 }
-
 .button{
-    
-height: 40px;
-    
-min-width: 70px;
-    
-border-radius: 4px;
+    height: 40px;
+    min-width: 70px;
+    border-radius: 4px;
 }
 
 .the_icon{
-
     width: 13%;
-
     background-color: #f1f4f9;
-
     display:  inline-block;
 }
-
 .attention{
     margin: 33px 9px;
     font-size: 16px;
     color: #c32222;
 }
 .btn_item{
-
     display: flex;
-
     justify-content: space-around;
 }
 .message_btn{
@@ -189,11 +140,10 @@ border-radius: 4px;
 }
 .cancel{
     display: block;
-
 }
 .body_container{
     width: 500px;
-    /* background-color: #ffffff9c; */
+    /* background-color: #8aff539c; */
     margin: 120px auto;
     /* padding: 20px 60px; */
 }
