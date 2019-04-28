@@ -16,8 +16,4 @@ router.get('/', function (req, res) {
     res.render('index');
 });
 
-router.get('/pdf', function (req, res) {
-    res.download(path.join(__dirname, '../public/ims/pdf/CV_QinWu_November6_2018.pdf'));
-});
-
 module.exports = router;

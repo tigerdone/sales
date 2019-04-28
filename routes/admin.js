@@ -15,7 +15,6 @@ const createFolder = function (folder) {
     }
 };
 const getword = require("../pdf/pdf1.js");
-
 const uploadFolder = './public/image';
 createFolder(uploadFolder);
 const storage = multer.diskStorage({
@@ -45,18 +44,14 @@ MongoClient.connect('mongodb://localhost:27017/sales', function (err, client) {
 
 // ------------order--------------//
 router.get('/Data', function (req, res) {
-    if (req.session.user === "supermanage") {
-        sales.find().toArray(function (err, result) {
-            if (err) throw err;
-            res.json(result);
-        })
+    let box = {};
+    if (req.session.user !== "supermanage") {
+        box.saler = req.session.user
     }
-    else{
-        sales.find({saler:req.session.user}).toArray(function (err, result) {
-            if (err) throw err;
-            res.json(result);
-        })
-    }
+    sales.find(box).toArray(function (err, result) {
+        if (err) throw err;
+        res.json(result.reverse());
+    })
 });
 router.get('/price', function (req, res) {
     price.find().toArray(function (err, result) {
@@ -94,29 +89,33 @@ router.post('/insertoneOrder', checkLogin, function (req, res) {
         sales.insertOne(box, function(err) {
             if (err) throw err;
             console.log("1 document inserted");
-            let inputMessage = {
-                time:box.time,
-                adultPrice:box.adultPrice,
-                personAll:parseInt(box.adultNum)+parseInt(box.childNum),
-                totalLow:box.totalLow,
-                childNum :box.childNum,
-                adultNum :box.adultNum,
-                cloth:parseInt(box.adultNum)+parseInt(box.childNum),
-                plup:box.adultNum,
-                totalUp:box.totalMoney,
-                phone:box.phoneNumber,
-            };
-            getword.getword(inputMessage,"白票");
-            // getword.getword(inputMessage,"addbule");
-            getword.getword(inputMessage,"红票");
-            getword.getword(inputMessage,"黄票");
-        });
 
-        res.sendStatus(200);
+            res.sendStatus(200);
+        });
     });
 });
+router.post('/initWord', checkLogin, function (req, res) {
+        let box = req.body;
+        let inputMessage = {
+            time:box.time,
+            adultPrice:box.adultPrice,
+            personAll:parseInt(box.adultNum)+parseInt(box.childNum),
+            totalLow:box.totalLow,
+            childNum :box.childNum,
+            adultNum :box.adultNum,
+            cloth:parseInt(box.adultNum)+parseInt(box.childNum),
+            plup:box.adultNum,
+            totalUp:box.totalMoney,
+            phone:box.phoneNumber,
+        };
+        getword.getword(inputMessage,"白票");
+        // getword.getword(inputMessage,"addbule");
+        getword.getword(inputMessage,"红票");
+        getword.getword(inputMessage,"黄票");
+        res.sendStatus(200);
+});
 
-//-----------login------------//
+//----------------login-----------------//
 router.post('/login', upload.array(), function (req, res) {
     users.find().toArray(function (err, result) {
         if (err) throw err;
@@ -146,8 +145,23 @@ router.get('/getSaler', function (req, res) {
         res.json(result[0]);
     })
 });
+router.get('/userMessage', function (req, res) {
+    // res.send({username:req.session.user});
+    users.find({username:req.session.user}).toArray(function (err, result) {
+        if (err) throw err;
+        if (result.length !== 0){
+            let box={};
+            box.username = result[0].username;
+            box.powerId = result[0].powerId;
+            res.json(box);
+        }
+        else {
+            res.sendStatus(404);
+        }
+    })
+});
 
-// ----------user-setting-----------//
+// ---------------user-setting----------------//
 router.get('/users', function (req, res) {
     users.find().toArray(function (err, result) {
         if (err) throw err;

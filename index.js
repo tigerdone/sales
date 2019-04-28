@@ -15,12 +15,6 @@ const indexRouter = require('./routes/index');
 const admin = require('./routes/admin');
 const checkLogin = require('./routes/check').checkLogin;
 
-
-// 设置模板目录
-app.set('views', path.join(__dirname, './views'));
-// 设置模板引擎为 ejs
-// app.set('view engine', 'ejs');
-
 //设置cookie 中间件
 app.use(cookieParser('sessionTest'));
 
@@ -35,6 +29,7 @@ app.use(session({
 }));
 app.use(bodyparser.json()); // 使用bodyparder中间件，
 app.use(bodyparser.urlencoded({ extended: true }));
+
 // 设置静态文件目录
 app.use('/', express.static(path.join(__dirname, 'public/admin')));
 app.use('/admin', express.static(path.join(__dirname, 'public/admin')));
