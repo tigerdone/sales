@@ -21,8 +21,8 @@ let getPdf=(inputMessage,username)=> {
     doc.text(inputMessage.adultPrice, 403, 87+y);
     doc.text(inputMessage.personAll, 205, 104+y);
     doc.text(inputMessage.totalLow, 403, 104+y);
-    doc.text(inputMessage.childNum, 205, 123+y);
-    doc.text(inputMessage.adultNum, 403, 122+y);
+    doc.text(inputMessage.adultNum, 205, 123+y);
+    doc.text(inputMessage.childNum, 403, 122+y);
     doc.text(inputMessage.cloth, 351, 140+y);
     doc.text(inputMessage.plup, 478, 141+y);
     doc.text(inputMessage.totalUp, 135, 155+y);
@@ -38,8 +38,8 @@ let getPdf=(inputMessage,username)=> {
     doc.text(inputMessage.adultPrice, 403, 87+y);
     doc.text(inputMessage.personAll, 205, 104+y);
     doc.text(inputMessage.totalLow, 403, 104+y);
-    doc.text(inputMessage.childNum, 205, 123+y);
-    doc.text(inputMessage.adultNum, 403, 122+y);
+    doc.text(inputMessage.adultNum, 205, 123+y);
+    doc.text(inputMessage.childNum, 403, 122+y);
     doc.text(inputMessage.cloth, 351, 140+y);
     doc.text(inputMessage.plup, 478, 141+y);
     doc.text(inputMessage.totalUp, 135, 155+y);
@@ -54,8 +54,8 @@ let getPdf=(inputMessage,username)=> {
     doc.text(inputMessage.adultPrice, 403, 87+y);
     doc.text(inputMessage.personAll, 205, 104+y);
     doc.text(inputMessage.totalLow, 403, 104+y);
-    doc.text(inputMessage.childNum, 205, 123+y);
-    doc.text(inputMessage.adultNum, 403, 122+y);
+    doc.text(inputMessage.adultNum, 205, 123+y);
+    doc.text(inputMessage.childNum, 403, 122+y);
     doc.text(inputMessage.cloth, 351, 140+y);
     doc.text(inputMessage.plup, 478, 141+y);
     doc.text(inputMessage.totalUp, 135, 155+y);
