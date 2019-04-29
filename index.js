@@ -33,7 +33,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 // 设置静态文件目录
 app.use('/', express.static(path.join(__dirname, 'public/admin')));
 app.use('/admin', express.static(path.join(__dirname, 'public/admin')));
-app.use('/word', express.static(path.join(__dirname, 'pdf')));
+app.use('/pdf', express.static(path.join(__dirname, './')));
 
 // 设置模板全局常量c
 app.locals.blog = {

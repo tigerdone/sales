@@ -14,7 +14,7 @@ const createFolder = function (folder) {
         fs.mkdirSync(folder)
     }
 };
-const getword = require("../pdf/pdf1.js");
+const getPdf = require("../pdf/pdfKit.js");
 const uploadFolder = './public/image';
 createFolder(uploadFolder);
 const storage = multer.diskStorage({
@@ -94,7 +94,7 @@ router.post('/insertoneOrder', checkLogin, function (req, res) {
         });
     });
 });
-router.post('/initWord', checkLogin, function (req, res) {
+router.post('/initPdf', checkLogin, function (req, res) {
         let box = req.body;
         let inputMessage = {
             time:box.time,
@@ -108,10 +108,7 @@ router.post('/initWord', checkLogin, function (req, res) {
             totalUp:box.totalMoney,
             phone:box.phoneNumber,
         };
-        getword.getword(inputMessage,"白票");
-        // getword.getword(inputMessage,"addbule");
-        getword.getword(inputMessage,"红票");
-        getword.getword(inputMessage,"黄票");
+        getPdf.getPdf(inputMessage,req.session.user);
         res.sendStatus(200);
 });
 
