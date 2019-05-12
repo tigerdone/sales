@@ -1,13 +1,13 @@
 {
-  "name": "float",
+  "name": "float_system",
   "version": "1.0.0",
   "description": "第一个版本",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "istanbul cover _mocha",
     "envStart": "cross-env pm2 start index.js --name 'myblog'",
-    "start": "node index",
-    "nodemon": "nodemon index"
+    "start": "node app",
+    "nodemon": "nodemon app"
   },
   "author": "",
   "license": "ISC",
