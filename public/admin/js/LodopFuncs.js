@@ -140,38 +140,31 @@ function getLodop(oOBJECT, oEMBED) {
 }
 
 //myadd
-function myPrint(Message) {
-    let inputMessage = {
-        time:Message.time,
-        adultPrice:Message.adultPrice,
-        personAll:parseInt(Message.adultNum)+parseInt(Message.childNum),
-        totalLow:Message.totalLow,
-        childNum:Message.childNum,
-        adultNum:Message.adultNum,
-        cloth:parseInt(Message.adultNum)+parseInt(Message.childNum),
-        plup:Message.adultNum,
-        totalUp:Message.totalMoney,
-        phone:Message.phoneNumber,
-    };
-    let font_width = 80;
-    let font_height = 30;
+function myPreview1(){
     var LODOP=getLodop();
     LODOP.SET_PRINT_PAGESIZE(3,"210mm","15mm","");
-    LODOP.ADD_PRINT_IMAGE(1,1,0,0,"<img border='0' src='http://lab.imslab.design/bg.jpg'/>");
+    var allstyle = `
+                    table {
+                        /*width: 800px;*/
+                        font-size: 12px;
+                    }
+                    table td{
+                        padding: 2px 5px;
+                        border: 1px #000 solid;
+                        margin: 0;
+                    }
+                    table td:nth-child(2n-1){
+                        width: 75px;
+                    }
+                    table td:nth-child(2n){
+                        width: 95px;
+                        text-align: right;
+                    }
+                    `;
+    var strBodyStyle="<style>"+allstyle+"</style>";
+    var strFormHtml=strBodyStyle+"<body>"+document.getElementById("form1").innerHTML+"</body>";
+    LODOP.ADD_PRINT_HTM(10,40,1000,800,strFormHtml);
 
-    LODOP.ADD_PRINT_TEXT("17mm","120mm",font_width,font_height,inputMessage.time);
-    LODOP.ADD_PRINT_TEXT("23mm","120mm",font_width,font_height,inputMessage.adultPrice);
-    LODOP.ADD_PRINT_TEXT("28mm", "55mm",font_width,font_height,inputMessage.personAll);
-    // LODOP.ADD_PRINT_TEXT("40.3mm", "10.4mm",30,10,inputMessage.totalLow);
-    LODOP.ADD_PRINT_TEXT("34mm", "55mm",font_width,font_height,inputMessage.adultNum);
-    LODOP.ADD_PRINT_TEXT("33mm", "120mm",font_width,font_height,inputMessage.childNum);
-    LODOP.ADD_PRINT_TEXT("39.5mm", "110mm",font_width,font_height,inputMessage.cloth);
-    LODOP.ADD_PRINT_TEXT("39.5mm", "150mm",font_width,font_height,inputMessage.plup);
-    LODOP.ADD_PRINT_TEXT("43.5mm", "45mm",font_width,font_height,inputMessage.totalUp+"元");
-    LODOP.ADD_PRINT_TEXT("48.5mm", "45mm",font_width,font_height,inputMessage.phone);
-
-    LODOP.PRINT();
-    // LODOP.PREVIEW();
-    // console.log(LODOP.PRINT_DESIGN());
-    // console.log(inputMessage);
+    // LODOP.PRINT();
+    LODOP.PREVIEW();
 }
