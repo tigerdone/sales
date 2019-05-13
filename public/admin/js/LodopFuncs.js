@@ -165,6 +165,6 @@ function myPreview1(){
     var strFormHtml=strBodyStyle+"<body>"+document.getElementById("form1").innerHTML+"</body>";
     LODOP.ADD_PRINT_HTM(10,40,1000,800,strFormHtml);
 
-    // LODOP.PRINT();
-    LODOP.PREVIEW();
+    LODOP.PRINT();
+    // LODOP.PREVIEW();
 }
