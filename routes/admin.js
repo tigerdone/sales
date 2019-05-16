@@ -59,15 +59,20 @@ router.post('/deleteOne', checkLogin, function (req, res) {
 router.post('/insertoneOrder', checkLogin, function (req, res) {
     let box = req.body;
     delete box._id;
-    // box.time = moment(Date.now()).format("YYYY-MM-DD");
     box.saler = req.session.user;
     users.find({username:box.saler}).toArray(function (err, result) {
         box.orderNum = box.time+ "-" + box.saler + "-"  + (++result[0].orders);
         sales.insertOne(box, function(err) {
             if (err) throw err;
             console.log("1 document inserted");
-
             res.sendStatus(200);
+        });
+
+        let _id = mongoose.Types.ObjectId(result[0]._id);
+        delete result[0]._id;
+        users.update({_id:_id}, result[0] , function(err) {
+            if (err) throw err;
+            console.log("user 1 document update");
         });
     });
 });
