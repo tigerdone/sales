@@ -5,14 +5,10 @@ const config = require('config-lite')(__dirname);
 const pkg = require('./package');
 // const winston = require('winston');
 // const expressWinston = require('express-winston');
-const cookieParser = require('cookie-parser');
 const bodyparser = require('body-parser');
 const index = require('./routes/index');
 const admin = require('./routes/admin');
 const app = express();
-
-//设置cookie 中间件
-app.use(cookieParser('sessionTest'));
 
 //设置session中间件
 app.use(session({
