@@ -10,6 +10,13 @@ const index = require('./routes/index');
 const admin = require('./routes/admin');
 const app = express();
 
+//配置跨域
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    next();
+});
 //设置session中间件
 app.use(session({
     name: config.session.key, // 设置 cookie 中保存 session id 的字段名称
