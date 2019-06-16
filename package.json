@@ -6,8 +6,8 @@
   "scripts": {
     "test": "istanbul cover _mocha",
     "envStart": "cross-env pm2 start index.js --name 'myblog'",
-    "start": "node app",
-    "nodemon": "nodemon app"
+    "indexStart": "node app",
+    "start": "nodemon app"
   },
   "author": "",
   "license": "ISC",
