@@ -31,19 +31,6 @@ app.use(session({
 app.use(bodyparser.json()); // 使用bodyparder中间件
 app.use(bodyparser.urlencoded({ extended: true }));
 
-//打印成功信息
-// app.use(expressWinston.logger({
-//     transports: [
-//         new (winston.transports.Console)({
-//             json: true,
-//             colorize: true
-//         }),
-//         new winston.transports.File({
-//             filename: 'logs/success.log'
-//         })
-//     ]
-// }));
-
 // 设置静态文件目录
 app.use('/', express.static(path.join(__dirname, '../my-app/build')));
 app.use('/admin', express.static(path.join(__dirname, '../my-app/build')));
