@@ -45,8 +45,8 @@ app.use(bodyparser.urlencoded({ extended: true }));
 // }));
 
 // 设置静态文件目录
-app.use('/', express.static(path.join(__dirname, 'public/admin')));
-app.use('/admin', express.static(path.join(__dirname, 'public/admin')));
+app.use('/', express.static(path.join(__dirname, '../my-app/build')));
+app.use('/admin', express.static(path.join(__dirname, '../my-app/build')));
 app.use('/pdf', express.static(path.join(__dirname, './')));
 
 // 路由
