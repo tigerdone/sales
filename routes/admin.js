@@ -82,6 +82,12 @@ router.post('/insertoneOrder', checkLogin, function (req, res) {
         sales.insertOne(box, function(err, result) {
             if (err) throw err;
             console.log("1 document inserted");
+            if (result && result.ops && result.ops[0]) {
+                res.send({
+                    result: result.ops[0]
+                })
+                return
+            }
             res.sendStatus(200);
         });
 
