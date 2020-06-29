@@ -82,9 +82,7 @@ router.post('/insertoneOrder', checkLogin, function (req, res) {
         sales.insertOne(box, function(err, result) {
             if (err) throw err;
             console.log("1 document inserted");
-            res.sendStatus({
-                result
-            });
+            res.sendStatus(200);
         });
 
         let _id = mongoose.Types.ObjectId(result[0]._id);
