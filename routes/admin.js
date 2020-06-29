@@ -79,10 +79,12 @@ router.post('/insertoneOrder', checkLogin, function (req, res) {
     box.saler = req.session.user;
     users.find({username:box.saler}).toArray(function (err, result) {
         box.orderNum = box.time+ "-" + box.saler + "-"  + (++result[0].orders);
-        sales.insertOne(box, function(err) {
+        sales.insertOne(box, function(err, result) {
             if (err) throw err;
             console.log("1 document inserted");
-            res.sendStatus(200);
+            res.sendStatus({
+                result
+            });
         });
 
         let _id = mongoose.Types.ObjectId(result[0]._id);
