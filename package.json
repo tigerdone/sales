@@ -7,7 +7,7 @@
     "test": "istanbul cover _mocha",
     "envStart": "cross-env pm2 start index.js --name 'myblog'",
     "indexStart": "node app",
-    "start": "nodemon app"
+    "start": "NODE_ENV=development nodemon app"
   },
   "author": "",
   "license": "ISC",
