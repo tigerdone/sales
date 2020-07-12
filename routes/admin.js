@@ -14,7 +14,7 @@ let store;
 
 // mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone
 // mongodb://localhost:27017/sales
-MongoClient.connect(config.mongodb, function (err, client) {
+MongoClient.connect(process.env.NODE_ENV === 'development' ? config.mongodbDev : config.mongodb, function (err, client) {
     if (err) throw err;
     sales  = client.db('sales').collection('order');
     users  = client.db('sales').collection('user');

@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const config = require('config-lite')(__dirname);
+const config = require('./config/default');
 const pkg = require('./package');
 // const winston = require('winston');
 // const expressWinston = require('express-winston');
