@@ -5,6 +5,7 @@ const checkLogin = require('./check').checkLogin;
 const getPdf = require("../pdf/pdfKit.js");
 const fs = require('fs'); //文件模块
 const path = require('path'); //文件模块
+const config = require('../config/default')
 
 let sales;
 let users;
@@ -13,7 +14,7 @@ let store;
 
 // mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone
 // mongodb://localhost:27017/sales
-MongoClient.connect('mongodb://localhost:27017/sales', function (err, client) {
+MongoClient.connect(config.mongodb, function (err, client) {
     if (err) throw err;
     sales  = client.db('sales').collection('order');
     users  = client.db('sales').collection('user');
@@ -24,7 +25,7 @@ MongoClient.connect('mongodb://localhost:27017/sales', function (err, client) {
 // ----------------order--------------//
 router.get('/Data', function (req, res) {
     let box = {};
-    if (req.session.user !== "supermanage") {
+    if (req.session.powerId !== "2") {
         box.saler = req.session.user
     }
     sales.find(box).toArray(function (err, result) {
@@ -126,6 +127,7 @@ router.post('/login', function (req, res) {
         });
         if (conSo){
             req.session.user = conSo.username;
+            req.session.powerId = conSo.powerId;
             res.send({isLogined:true});
         }
         else{
@@ -173,7 +175,7 @@ router.post('/deleteuser', checkLogin, function (req, res) {
     let _id = mongoose.Types.ObjectId(req.body._id);
     let box = req.body;
     delete box._id;
-    if (box.username === "supermanage"&&box.password === "supermanage") {
+    if (box.powerId === "2") {
         res.send({message:"无法删除本用户名"});
     }
     else {
