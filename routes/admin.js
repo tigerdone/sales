@@ -29,7 +29,7 @@ router.get('/Data', function (req, res) {
     if (req.session.powerId !== "2") {
         box.saler = req.session.user
     }
-    sales.find(box).toArray(function (err, result) {
+    sales.find(box).limit(100).toArray(function (err, result) {
         if (err) throw err;
         res.json(result.reverse());
     })
