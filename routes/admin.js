@@ -25,11 +25,13 @@ MongoClient.connect(process.env.NODE_ENV === 'development' ? config.mongodbDev :
 
 // ----------------order--------------//
 router.get('/Data', function (req, res) {
-    let box = {};
+    let box = {
+        time: "2020-08-29"
+    };
     if (req.session.powerId !== "2") {
         box.saler = req.session.user
     }
-    sales.find(box).limit(100).toArray(function (err, result) {
+    sales.find(box).toArray(function (err, result) {
         if (err) throw err;
         res.json(result.reverse());
     })
