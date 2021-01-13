@@ -1,10 +1,13 @@
+
+项目调试运行 npm run start
+
+项目启动运行 node app.js
+
+项目启动后必须先添加超级管理员 暂时只能手动在控制台添加  如下案例代码
+
 {
-    "_id": {
-        "$oid": "5f0b2e507c213e16a465c31e"
-    },
-    "orders": 236,
-    "password": "233",
+    "orders": 0,
+    "password": "supermanage",
     "powerId": "2",
     "username": "supermanage",
-    "key": "Mon Jul 13 2020 00:13:12 GMT+0800 (中国标准时间)0.012631417494289865"
 }
