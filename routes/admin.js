@@ -26,7 +26,7 @@ MongoClient.connect(process.env.NODE_ENV === 'development' ? config.mongodbDev :
 // ----------------order--------------//
 router.get('/Data', function (req, res) {
     let box = {
-        time: "2020-08-29"
+       
     };
     if (req.session.powerId !== "2") {
         box.saler = req.session.user
