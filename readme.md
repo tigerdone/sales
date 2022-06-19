@@ -17,3 +17,9 @@ db.user.insert({"orders": 0,"password": "supermanage","powerId": "2","username":
 db.price.insert({'adultPrice': 80, 'childPrice': 40, 'plupPrice': 50, 'clothPrice': 30})
 
 ```
+
+## 查询磁盘使用量
+find / -size +100M -exec ls -lh {} \;
+
+## 查询历史使用命令
+history
