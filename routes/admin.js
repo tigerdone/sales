@@ -17,6 +17,7 @@ let store;
 console.log(process.env)
 MongoClient.connect(process.env.NODE_ENV === 'development' ? config.mongodbDev : config.mongodb, function (err, client) {
     if (err) throw err;
+    console.log(client.db('sales'))
     sales  = client.db('sales').collection('order');
     users  = client.db('sales').collection('user');
     price  = client.db('sales').collection('price');
