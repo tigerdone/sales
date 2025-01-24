@@ -28,3 +28,8 @@ history
 在config/default.js文件中修改成远程数据库，即可连接远程数据库
 // mongodb:"mongodb://120.78.205.46:27017/sales",
 需要把阿里云安全组的对应额端口打开27017
+开发完成后需要关闭安全组
+
+## 安装数据库
+参考
+https://juejin.cn/post/7176963017127493689?searchId=20250123180240C237B6367C8C3B4EB2AB
