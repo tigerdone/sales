@@ -62,9 +62,9 @@ router.post('/updateoneOrder', checkLogin, function (req, res) {
     let _id = mongoose.Types.ObjectId(req.body._id);
     let box = req.body;
     delete box._id;
-    sales.update({_id:_id}, box , function(err) {
+    sales.updateOne({_id:_id}, { $set: box} , function(err) {
         if (err) throw err;
-        console.log("1 document update");
+        console.log("1 document updateOne");
     });
     res.sendStatus(200);
 });
@@ -98,9 +98,9 @@ router.post('/insertoneOrder', checkLogin, function (req, res) {
 
         let _id = mongoose.Types.ObjectId(result[0]._id);
         delete result[0]._id;
-        users.update({_id:_id}, result[0] , function(err) {
+        users.updateOne({_id:_id}, { $set: result[0] } , function(err) {
             if (err) throw err;
-            console.log("user 1 document update");
+            console.log("user 1 document updateOne");
         });
     });
 });
@@ -214,7 +214,7 @@ router.post('/updateuser', checkLogin, function (req, res) {
     let box = req.body;
     let id = mongoose.Types.ObjectId(box._id);
     delete box._id;
-    users.update({_id:id},box, function(err) {
+    users.updateOne({_id:id}, { $set:box}, function(err) {
         if (err) throw err;
         console.log("1 document inserted");
     });
@@ -234,7 +234,7 @@ router.post('/updatePrice', checkLogin, function (req, res) {
     let box = req.body;
     let id = mongoose.Types.ObjectId(box._id);
     delete box._id;
-    price.update({_id:id}, box, function(err) {
+    price.updateOne({_id:id}, { $set:box}, function(err) {
         if (err) throw err;
         console.log("1 document inserted");
     });
@@ -275,7 +275,7 @@ router.post('/updateStore', checkLogin, function (req, res) {
     store.find({_id:id}).toArray((err, result) =>{
         if (err) throw err;
         box.total = parseInt(result[0].total)+parseInt(box.total);
-        store.update({_id:id},box, function(err) {
+        store.updateOne({_id:id},{ $set:box}, function(err) {
             if (err) throw err;
             console.log("1 document inserted");
         });

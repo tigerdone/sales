@@ -23,3 +23,8 @@ find / -size +100M -exec ls -lh {} \;
 
 ## 查询历史使用命令
 history
+
+## 本地调试
+在config/default.js文件中修改成远程数据库，即可连接远程数据库
+// mongodb:"mongodb://120.78.205.46:27017/sales",
+需要把阿里云安全组的对应额端口打开27017
