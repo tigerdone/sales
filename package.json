@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "istanbul cover _mocha",
-    "envStart": "cross-env pm2 start index.js --name 'sales'",
+    "envStart": "cross-env pm2 start app.js --name 'sales'",
     "indexStart": "node app",
     "start": "NODE_ENV=development nodemon app"
   },
