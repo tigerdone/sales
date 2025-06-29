@@ -86,11 +86,11 @@ router.post('/insertoneOrder', checkLogin, function (req, res) {
         box.orderNum = box.time+ "-" + box.saler + "-"  + (++result[0].orders);
         sales.insertOne(box, function(err, result) {
             if (err) throw err;
-            console.log("1 document inserted");
-            if (result && result.ops && result.ops[0]) {
+            console.log("1 document inserted", result);
+            if (result.insertedId) {
                 res.send({
-                    result: result.ops[0]
-                })
+			result: { ...box, _id: result.insertedId }
+		})
                 return
             }
             res.sendStatus(200);
