@@ -1,10 +1,9 @@
 const router = require('express').Router();
+const MongoClient = require('mongodb').MongoClient;
 let users;
 const config = require('../config/default')
 
-// mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone
-// mongodb://localhost:27017/sales
-MongoClient.connect(process.env.NODE_ENV === 'development' ? config.mongodbDev : config.mongodb, function (err, client) {
+MongoClient.connect(config.mongodb, function (err, client) {
     if (err) throw err;
     users  = client.db('sales').collection('user');
     price  = client.db('sales').collection('price');

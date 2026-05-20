@@ -2,9 +2,6 @@
 // const config = require('../config/default')
 
 // var connector = {};
-// // mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone
-// // mongodb://localhost:27017/sales
-
 // console.log(process.env)
 
 // MongoClient.connect(config.mongodb, function (err, client) {

@@ -3,8 +3,6 @@ const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 const checkLogin = require('./check').checkLogin;
 const getPdf = require("../pdf/pdfKit.js");
-const fs = require('fs'); //文件模块
-const path = require('path'); //文件模块
 const config = require('../config/default')
 
 let sales;
@@ -12,10 +10,7 @@ let users;
 let price;
 let store;
 
-// mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone
-// mongodb://localhost:27017/sales
-console.log(process.env)
-MongoClient.connect(process.env.NODE_ENV === 'development' ? config.mongodbDev : config.mongodb, function (err, client) {
+MongoClient.connect(config.mongodb, function (err, client) {
     if (err) throw err;
     console.log(client.db('sales'))
     sales  = client.db('sales').collection('order');
@@ -36,21 +31,6 @@ router.get('/Data', function (req, res) {
         if (err) throw err;
         res.json(result.reverse());
     })
-});
-router.get('/DataJson', function (req, res) {
-    console.log(__dirname);
-    var file = path.join(__dirname, '../public/Data.json');
-    //文件路径，__dirname为当前运行js文件的目录
-    //var file = 'f:\\nodejs\\data\\test.json'; //也可以用这种方式指定路径
-
-    //读取json文件
-    fs.readFile(file, 'utf-8', function(err, data) {
-        if (err) {
-            res.send('文件读取失败');
-        } else {
-            res.send(data);
-        }
-    });
 });
 router.get('/price', function (req, res) {
     price.find().toArray(function (err, result) {

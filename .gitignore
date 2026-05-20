@@ -1,6 +1,10 @@
 config/*
 !config/default.*
+.env
+public/Data.json
 npm-debug.log
 node_modules
 coverage
 .idea/*
+
+.DS_Store

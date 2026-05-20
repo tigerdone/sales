@@ -32,6 +32,9 @@ importers:
       docxtemplater:
         specifier: ^3.10.1
         version: 3.58.1
+      dotenv:
+        specifier: ^16.6.1
+        version: 16.6.1
       ejs:
         specifier: ^2.6.1
         version: 2.7.4
@@ -999,6 +1002,10 @@ packages:
   docxtemplater@3.58.1:
     resolution: {integrity: sha512-NNOv/9Yml0ZG2mNj/wmULzyKEWcVzfIfowBnVnB6PKx0va5TLiXpGJxV567a6rbkyPnCv8FJpc/jrOADhJvCrw==}
     engines: {node: '>=0.10'}
+
+  dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
 
   duck@0.1.12:
     resolution: {integrity: sha512-wkctla1O6VfP89gQ+J/yDesM0S7B7XLXjKGzXxMDVFg7uEn706niAtyYovKbyq1oT9YwDcly721/iUWoc8MVRg==}
@@ -4266,6 +4273,8 @@ snapshots:
   docxtemplater@3.58.1:
     dependencies:
       '@xmldom/xmldom': 0.9.7
+
+  dotenv@16.6.1: {}
 
   duck@0.1.12:
     dependencies:

@@ -1,15 +1,9 @@
 module.exports = {
-    port: 80,
+    port: Number(process.env.PORT) || 80,
     session: {
-        secret: 'sales',
-        key: 'tiger',
-        maxAge: 2592000000
+        secret: process.env.SESSION_SECRET || 'dev-only-change-session-secret',
+        key: process.env.SESSION_KEY || 'tiger',
+        maxAge: Number(process.env.SESSION_MAX_AGE) || 2592000000
     },
-    mongodb:"mongodb://127.0.0.1:27017/sales",
-    // mongodb:"mongodb://120.78.205.46:27017/sales",
-    
-    // mongodb: 'mongodb://tigerdone:18328646311lihu@ds131942.mlab.com:31942/tigerdone',
-    mongodbDev: 'mongodb://tigerdone:18328646311lihu@ds249967.mlab.com:49967/sales'
+    mongodb: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/sales'
 };
-
-
